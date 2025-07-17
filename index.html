@@ -38,6 +38,7 @@
             background: var(--white);
             overflow-x: hidden;
             font-weight: 400;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -227,9 +228,10 @@
 
         /* About Section */
         .about {
-            padding: 150px 0;
+            padding: 100px 0;
             background: var(--white);
             position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -287,8 +289,10 @@
 
         /* Projects Section */
         .projects {
-            padding: 150px 0;
+            padding: 100px 0;
             background: var(--neutral-50);
+            position: relative;
+            z-index: 1;
         }
 
         .projects-grid {
@@ -395,12 +399,13 @@
 
         /* Contact Section */
         .contact {
-            padding: 150px 0;
+            padding: 100px 0;
             background: var(--primary);
             color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .contact::before {
@@ -559,7 +564,15 @@
 
         /* Add scroll offset for navigation targets */
         #about, #projects, #contact {
-            scroll-margin-top: 120px;
+            scroll-margin-top: 100px;
+            padding-top: 20px;
+        }
+
+        /* Ensure sections are visible */
+        .about, .projects, .contact {
+            min-height: 100px;
+            display: block;
+            position: relative;
         }
 
         /* Accessibility improvements for colorblind users */
@@ -726,9 +739,18 @@
 
     <script>
         // Debug: Log when sections come into view
-        console.log('Script loaded');
+        console.log('Script loaded - checking sections');
         
-        // Smooth scrolling for navigation links
+        // Check if sections exist
+        const aboutSection = document.querySelector('#about');
+        const projectsSection = document.querySelector('#projects');
+        const contactSection = document.querySelector('#contact');
+        
+        console.log('About section:', aboutSection);
+        console.log('Projects section:', projectsSection);
+        console.log('Contact section:', contactSection);
+        
+        // Smooth scrolling for navigation links with better error handling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -738,10 +760,14 @@
                 console.log('Clicked:', targetId, 'Element found:', targetElement);
                 
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    // Use scrollIntoView with offset
+                    const offsetTop = targetElement.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
+                } else {
+                    console.error('Target element not found:', targetId);
                 }
             });
         });
