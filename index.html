@@ -1,195 +1,780 @@
-<!DOCTYPE html>
+<nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dana Lee – Human-AI Collaboration</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #f9f9f9;
-      --text-color: #222;
-      --link-color: #007aff;
-      --hover-bg: #eaeaea;
-    }
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #f0f0f0;
-      --link-color: #4da6ff;
-      --hover-bg: #1e1e1e;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      cursor: url('https://twemoji.maxcdn.com/v/latest/72x72/1f916.png'), auto;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 40px 20px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    header {
-      max-width: 800px;
-      margin: 0 auto 60px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: var(--text-color);
-    }
-    .projects {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .project {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-      background: var(--hover-bg);
-      transition: transform 0.3s ease;
-    }
-    .project:hover {
-      transform: translateY(-5px);
-    }
-    .project img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
-    }
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .project:hover .overlay {
-      opacity: 1;
-    }
-    .overlay h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-    .overlay p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 60px;
-    }
-    .footer a {
-      color: var(--link-color);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .toggle-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: 2px solid var(--text-color);
-      color: var(--text-color);
-      padding: 6px 12px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.3s;
-    }
-    .toggle-btn:hover {
-      background-color: var(--hover-bg);
-    }
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-AI Collaboration Research & Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #2a2a2a;
+            --accent: #6366f1;
+            --accent-light: #a5b4fc;
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-300: #d4d4d4;
+            --neutral-600: #525252;
+            --neutral-700: #404040;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--white);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            border-radius: 100px;
+            padding: 12px 32px;
+            border: 1px solid var(--neutral-200);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--neutral-600);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: var(--neutral-100);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--white) 50%, var(--neutral-100) 100%);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            opacity: 0.03;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 3s;
+        }
+
+        .shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 40%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 6.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: slideInUp 1.4s ease 0.3s forwards;
+            letter-spacing: -3px;
+            line-height: 0.95;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neutral-700) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-role {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideInUp 1.4s ease 0.5s forwards;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: slideInUp 1.4s ease 0.7s forwards;
+            line-height: 1.5;
+            max-width: 800px;
+            color: var(--neutral-600);
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: slideInUp 1.4s ease 0.9s forwards;
+            box-shadow: 0 8px 32px rgba(10, 10, 10, 0.12);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(10, 10, 10, 0.16);
+            background: var(--neutral-800);
+        }
+
+        .cta-button::after {
+            content: '→';
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 150px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 80px;
+            text-align: center;
+            color: var(--dark);
+            letter-spacing: -1px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+        }
+
+        .about-text p:first-child {
+            margin-bottom: 30px;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-warm));
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 107, 187, 0.2);
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 150px 0;
+            background: var(--neutral-50);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 120px;
+            margin-top: 100px;
+        }
+
+        .project {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.6s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.08);
+            border-color: var(--neutral-300);
+        }
+
+        .project-content {
+            padding: 80px;
+        }
+
+        .project-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: var(--primary);
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .project-description {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--neutral-600);
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .project-highlights {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .project-highlights li {
+            font-size: 1.1rem;
+            color: var(--neutral-600);
+            margin-bottom: 32px;
+            padding: 24px 0;
+            padding-left: 80px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+            border-left: 2px solid var(--neutral-200);
+        }
+
+        .project-highlights li.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-highlights li::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 14px;
+            border: 4px solid var(--white);
+        }
+
+        .project-highlights li:nth-child(1)::before { content: '01'; }
+        .project-highlights li:nth-child(2)::before { content: '02'; }
+        .project-highlights li:nth-child(3)::before { content: '03'; }
+
+        .project-highlights li:hover {
+            transform: translateX(8px);
+            border-left-color: var(--accent);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 150px 0;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .contact .section-title {
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-text {
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-button::after {
+            content: '→';
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-button:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation for bullet points */
+        .project-highlights li:nth-child(1) { transition-delay: 0.1s; }
+        .project-highlights li:nth-child(2) { transition-delay: 0.2s; }
+        .project-highlights li:nth-child(3) { transition-delay: 0.3s; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .project-content {
+                padding: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-container {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-role {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .project-content {
+                padding: 40px;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .about-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Accessibility improvements for colorblind users */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast patterns for colorblind accessibility */
+        .project-highlights li::before {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .project:hover {
+            border-color: var(--primary-light);
+        }
+    </style>
 </head>
-<body data-theme="light">
-  <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <header>
-    <h1>Dana Lee</h1>
-    <p>Human-AI Collaboration Researcher &amp; Systems Designer<br>Designing interactions between people and intelligent systems.</p>
-  </header>
+    <section class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Designing the Future of Human‑AI Collaboration</h1>
+                <div class="hero-role">Research & Strategy</div>
+                <div class="hero-subtitle">
+                    Transforming ambiguous collaboration challenges into testable frameworks that enable fluid, trustworthy co‑creation between people and intelligent systems.
+                </div>
+                <a href="#projects" class="cta-button">Explore My Work</a>
+            </div>
+        </div>
+    </section>
 
-  <main class="projects">
-    <!-- Voice Correction -->
-    <div class="project">
-      <img src="https://via.placeholder.com/400x160?text=Voice+Correction" alt="Voice Correction">
-      <div class="overlay">
-        <h3>Conversational Corrections<br>for AI Dictation on AR Glasses</h3>
-        <p>Designed mixed-method evaluation of voice-driven editing workflows, defining benchmark correction cases and shaping model behavior for AR environments.</p>
-      </div>
-    </div>
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>I'm a human‑AI systems researcher and designer who specializes in turning ambiguous collaboration challenges into testable frameworks. Over the past decade I've led mixed‑method studies and prototypes—across voice, AR, and AI infrastructure—to shape both product and model behavior, enabling fluid, trustworthy co‑creation between people and intelligent systems.</p>
+                    <p>My blend of 0→1 vision, hands‑on fieldwork, and deep quantitative rigor makes me uniquely qualified to define and drive the next generation of human‑AI collaboration at scale.</p>
+                </div>
+                <div class="about-visual fade-in"></div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Messaging Productivity -->
-    <div class="project">
-      <img src="https://via.placeholder.com/400x160?text=Messaging+Productivity" alt="Messaging Productivity">
-      <div class="overlay">
-        <h3>Ambient Messaging<br>for AI-Augmented AR Glasses</h3>
-        <p>Built 0→1 prototypes in Unity and paper overlays in a home-like lab to explore glanceable, contextual messaging interactions with AI assistants.</p>
-      </div>
-    </div>
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project fade-in">
+                    <div class="project-content">
+                        <h3 class="project-title">Conversational Corrections for AI Dictation on AR Glasses</h3>
+                        <p class="project-description">Designed a natural multi-turn interaction loop where users speak corrections and the AI model revises prior output, creating fluid collaboration patterns for AR interfaces.</p>
+                        <ul class="project-highlights">
+                            <li>
+                                <span class="highlight-title">Human-AI interaction design</span>
+                                Created natural "multi-turn" loops that mirror core collaboration patterns
+                            </li>
+                            <li>
+                                <span class="highlight-title">Model behavior shaping</span>
+                                Defined clear benchmarks (task time, success rate, edit count) for prompt and model improvement
+                            </li>
+                            <li>
+                                <span class="highlight-title">Mixed-method evaluation</span>
+                                Combined think-aloud interviews with quantitative metrics for comprehensive assessment
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- AI Infra Tooling -->
-    <div class="project">
-      <img src="https://via.placeholder.com/400x160?text=AI+Infra+Tooling" alt="AI Infra Tooling">
-      <div class="overlay">
-        <h3>Human Insight at Scale:<br>AI Infra Tooling</h3>
-        <p>Partnered with ML engineers to design internal dashboards and evaluation pipelines, improving model training workflows and error discovery at scale.</p>
-      </div>
-    </div>
+                <div class="project fade-in">
+                    <div class="project-content">
+                        <h3 class="project-title">Ambient Messaging for AI-Augmented AR Glasses</h3>
+                        <p class="project-description">Pioneered new interaction paradigms exploring how conversational AI could assist in glanceable, context-aware messaging through innovative prototyping.</p>
+                        <ul class="project-highlights">
+                            <li>
+                                <span class="highlight-title">0→1 problem framing</span>
+                                Invented entirely new interaction paradigms for conversational AI assistance
+                            </li>
+                            <li>
+                                <span class="highlight-title">Multimodal prototyping</span>
+                                From Unity demos to transparent "paper overlays" in home-like lab environments
+                            </li>
+                            <li>
+                                <span class="highlight-title">Strategic insight</span>
+                                Uncovered rules of engagement for when AI should interject, summarize, or simplify
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- LLM Prompt Study -->
-    <div class="project">
-      <img src="https://via.placeholder.com/400x160?text=Prompt+Study" alt="Prompt Study">
-      <div class="overlay">
-        <h3>Prompt-Driven Study<br>of GPT Behavior</h3>
-        <p>Self-directed exploration of prompt variations to map collaboration patterns, failure modes, and trust calibration in LLM-based systems.</p>
-      </div>
-    </div>
-  </main>
+                <div class="project fade-in">
+                    <div class="project-content">
+                        <h3 class="project-title">Human Insight at Scale: AI Infrastructure Tooling</h3>
+                        <p class="project-description">Built comprehensive dashboards and pipelines that surfaced model behavior metrics, enabling scalable research operations and cross-functional collaboration.</p>
+                        <ul class="project-highlights">
+                            <li>
+                                <span class="highlight-title">Cross-functional collaboration</span>
+                                Partnered with ML engineers and data scientists to understand model training pain points
+                            </li>
+                            <li>
+                                <span class="highlight-title">Tool design for evaluation</span>
+                                Created systems that surface model behavior metrics for improved evaluation processes
+                            </li>
+                            <li>
+                                <span class="highlight-title">Scalable research ops</span>
+                                Demonstrated research at scale with rigorous, efficient human-in-the-loop evaluation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-  <div class="footer">
-    <p><a href="https://www.linkedin.com/in/danaylee/" target="_blank">Connect with me on LinkedIn &rarr;</a></p>
-  </div>
+                <div class="project fade-in">
+                    <div class="project-content">
+                        <h3 class="project-title">Prompt-Driven Study of GPT Collaboration</h3>
+                        <p class="project-description">Led self-directed exploration of how prompt phrasing impacts LLM trust, hallucination, and co-editing fluency, generating actionable insights for model alignment.</p>
+                        <ul class="project-highlights">
+                            <li>
+                                <span class="highlight-title">Prompt engineering & behavior analysis</span>
+                                Explored how prompt phrasing impacts LLM trust and collaboration patterns
+                            </li>
+                            <li>
+                                <span class="highlight-title">Mapping failure modes</span>
+                                Identified breakdown points and trust leaks to improve interaction design
+                            </li>
+                            <li>
+                                <span class="highlight-title">Rapid, scrappy research</span>
+                                Quickly prototyped, tested, and iterated on LLM behaviors with exploratory mindset
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-  <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    }
-  </script>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's Collaborate</h2>
+            <p class="contact-text fade-in">Ready to shape the future of human-AI collaboration? Let's discuss how we can work together to create more intuitive, trustworthy, and effective AI systems.</p>
+            <a href="mailto:hello@example.com" class="contact-button fade-in">Get In Touch</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Enhanced intersection observer for bullet point animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate bullet points when project comes into view
+                    if (entry.target.classList.contains('project')) {
+                        const bullets = entry.target.querySelectorAll('.project-highlights li');
+                        bullets.forEach((bullet, index) => {
+                            setTimeout(() => {
+                                bullet.classList.add('animate');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements and projects
+        document.querySelectorAll('.fade-in, .project').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.borderBottomColor = 'rgba(0, 107, 187, 0.15)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.borderBottomColor = 'rgba(0, 107, 187, 0.1)';
+            }
+        });
+
+        // Parallax effect for hero shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+    </script>
 </body>
 </html>
 
