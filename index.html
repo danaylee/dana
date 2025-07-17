@@ -99,7 +99,7 @@
             color: var(--primary);
             position: relative;
             overflow: hidden;
-            padding-top: 100px;
+            padding-top: 0;
         }
 
         .hero-bg-shapes {
@@ -483,12 +483,17 @@
         }
 
         .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 1;
+            transform: translateY(0);
             transition: all 1s ease;
         }
 
-        .fade-in.visible {
+        .fade-in.animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .fade-in.animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -607,23 +612,23 @@
 
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text fade-in">
+                <div class="about-text">
                     <p>I'm a human‑AI systems researcher and designer who specializes in turning ambiguous collaboration challenges into testable frameworks. Over the past decade I've led mixed‑method studies and prototypes—across voice, AR, and AI infrastructure—to shape both product and model behavior, enabling fluid, trustworthy co‑creation between people and intelligent systems.</p>
                     <p>My blend of 0→1 vision, hands‑on fieldwork, and deep quantitative rigor makes me uniquely qualified to define and drive the next generation of human‑AI collaboration at scale.</p>
                 </div>
-                <div class="about-visual fade-in"></div>
+                <div class="about-visual"></div>
             </div>
         </div>
     </section>
 
     <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 
-                <div class="project fade-in">
+                <div class="project">
                     <div class="project-content">
                         <h3 class="project-title">Conversational Corrections for AI Dictation on AR Glasses</h3>
                         <p class="project-description">Designed a natural multi-turn interaction loop where users speak corrections and the AI model revises prior output, creating fluid collaboration patterns for AR interfaces.</p>
@@ -720,24 +725,36 @@
     </section>
 
     <script>
+        // Debug: Log when sections come into view
+        console.log('Script loaded');
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                console.log('Clicked:', targetId, 'Element found:', targetElement);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
-        // Enhanced intersection observer for bullet point animations
+        // Enhanced intersection observer for better debugging
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                console.log('Observing:', entry.target.id, 'Intersecting:', entry.isIntersecting);
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     
@@ -757,6 +774,7 @@
         // Observe all fade-in elements and projects
         document.querySelectorAll('.fade-in, .project').forEach(el => {
             observer.observe(el);
+            console.log('Observing element:', el.classList.toString());
         });
 
         // Navigation background change on scroll with improved visibility
