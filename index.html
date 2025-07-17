@@ -3,24 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dana Lee – Human-AI Collaboration Researcher and Strategist</title>
+  <title>Dana Lee – Human-AI Collaboration</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #222;
+      --link-color: #007aff;
+      --hover-bg: #eaeaea;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --link-color: #4da6ff;
+      --hover-bg: #1e1e1e;
+    }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      cursor: url('https://twemoji.maxcdn.com/v/latest/72x72/1f916.png'), auto;
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
-      color: #222;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
       padding: 40px 20px;
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
       max-width: 800px;
       margin: 0 auto 60px;
+      text-align: center;
     }
     header h1 {
       font-size: 2.5rem;
@@ -29,64 +44,153 @@
     header p {
       margin-top: 10px;
       font-size: 1.2rem;
-      color: #555;
+      color: var(--text-color);
     }
     .projects {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
     .project {
-      margin-bottom: 50px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #ddd;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--hover-bg);
+      transition: transform 0.3s ease;
     }
-    .project h2 {
-      font-size: 1.5rem;
+    .project:hover {
+      transform: translateY(-5px);
+    }
+    .project img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .project:hover .overlay {
+      opacity: 1;
+    }
+    .overlay h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .overlay p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .footer a {
+      color: var(--link-color);
+      text-decoration: none;
       font-weight: 600;
     }
-    .project p {
-      margin-top: 10px;
-      color: #444;
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid var(--text-color);
+      color: var(--text-color);
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s;
     }
-    .project a {
-      display: inline-block;
-      margin-top: 12px;
-      text-decoration: none;
-      color: #007aff;
-      font-weight: 500;
+    .toggle-btn:hover {
+      background-color: var(--hover-bg);
     }
-    .project a:hover {
-      text-decoration: underline;
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
+  <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+
   <header>
     <h1>Dana Lee</h1>
-    <p>Human-AI Collaboration Researcher & Systems Designer<br />Designing interactions between people and intelligent systems.</p>
+    <p>Human-AI Collaboration Researcher &amp; Systems Designer<br>Designing interactions between people and intelligent systems.</p>
   </header>
 
   <main class="projects">
-    <section class="project">
-      <h2>Designing Conversational Corrections for AI Dictation on AR Glasses</h2>
-      <p>Explored multi-turn voice correction workflows in an AR environment, mapping where natural speech revisions align or conflict with model behavior. Combined think-aloud studies with task metrics to guide engineering benchmarks and product priorities.</p>
-    </section>
+    <!-- Voice Correction -->
+    <div class="project">
+      <img src="https://via.placeholder.com/400x160?text=Voice+Correction" alt="Voice Correction">
+      <div class="overlay">
+        <h3>Conversational Corrections<br>for AI Dictation on AR Glasses</h3>
+        <p>Designed mixed-method evaluation of voice-driven editing workflows, defining benchmark correction cases and shaping model behavior for AR environments.</p>
+      </div>
+    </div>
 
-    <section class="project">
-      <h2>Inventing Ambient Messaging Workflows for AI-Augmented AR Glasses</h2>
-      <p>Led 0→1 exploration of messaging productivity in ambient contexts. Prototyped in Unity and via transparent overlays to simulate interface design in home settings. Research guided design for asynchronous, low-friction collaboration with on-device AI.</p>
-    </section>
+    <!-- Messaging Productivity -->
+    <div class="project">
+      <img src="https://via.placeholder.com/400x160?text=Messaging+Productivity" alt="Messaging Productivity">
+      <div class="overlay">
+        <h3>Ambient Messaging<br>for AI-Augmented AR Glasses</h3>
+        <p>Built 0→1 prototypes in Unity and paper overlays in a home-like lab to explore glanceable, contextual messaging interactions with AI assistants.</p>
+      </div>
+    </div>
 
-    <section class="project">
-      <h2>Enabling Human Insight at Scale: Research for AI Infra and Machine Learning and Model Development Tools</h2>
-      <p>Identified model lifecycle bottlenecks and prototype internal tools. Synthesized quant and qual insights to drive improvements in debugging workflows and metric interpretation.</p>
-    </section>
+    <!-- AI Infra Tooling -->
+    <div class="project">
+      <img src="https://via.placeholder.com/400x160?text=AI+Infra+Tooling" alt="AI Infra Tooling">
+      <div class="overlay">
+        <h3>Human Insight at Scale:<br>AI Infra Tooling</h3>
+        <p>Partnered with ML engineers to design internal dashboards and evaluation pipelines, improving model training workflows and error discovery at scale.</p>
+      </div>
+    </div>
 
-    <section class="project">
-      <h2>Probing the Edges of Collaboration: A Prompt-Driven Study of GPT Behavior</h2>
-      <p>Self-directed study exploring how prompt phrasing shapes LLM output quality, trust calibration, and co-editing fluency. Mapped failure modes and proposed scaffolds for resilient, interpretable human-AI co-creation.</p>
-    </section>
+    <!-- LLM Prompt Study -->
+    <div class="project">
+      <img src="https://via.placeholder.com/400x160?text=Prompt+Study" alt="Prompt Study">
+      <div class="overlay">
+        <h3>Prompt-Driven Study<br>of GPT Behavior</h3>
+        <p>Self-directed exploration of prompt variations to map collaboration patterns, failure modes, and trust calibration in LLM-based systems.</p>
+      </div>
+    </div>
   </main>
+
+  <div class="footer">
+    <p><a href="https://www.linkedin.com/in/danaylee/" target="_blank">Connect with me on LinkedIn &rarr;</a></p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+  </script>
 </body>
 </html>
+
 
