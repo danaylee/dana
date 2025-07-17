@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dana's Research Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5a67d8;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #5a67d8;
+        }
+        
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .page {
+            display: none;
+            padding: 2rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            margin: -2rem -2rem 3rem -2rem;
+            border-radius: 20px 20px 0 0;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+        
+        .project-description {
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .about-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skill {
+            background: #5a67d8;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+        
+        /* Case Study Pages */
+        .case-study {
+            padding: 2rem;
+        }
+        
+        .case-study h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .case-study-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+        
+        .meta-item {
+            flex: 1;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta-value {
+            color: #718096;
+        }
+        
+        .case-study-section {
+            margin-bottom: 3rem;
+        }
+        
+        .case-study-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .case-study-section p {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        
+        .research-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .insight-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #5a67d8;
+        }
+        
+        .insight-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #5a67d8;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: #4c51bf;
+        }
+        
+        /* Password Protection Placeholder */
+        .password-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .password-form h2 {
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .password-form p {
+            margin-bottom: 2rem;
+            color: #718096;
+        }
+        
+        .password-input {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+            width: 300px;
+            font-size: 1rem;
+        }
+        
+        .password-btn {
+            background: #5a67d8;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .password-btn:hover {
+            background: #4c51bf;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .case-study-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Fun animations */
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .project-card {
+            animation: slideInUp 0.6s ease-out both;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">UX Research</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Dana's Research Portfolio</h1>
+                <p>I’m a human-AI systems researcher with deep experience designing and evaluating collaborative interactions between people and intelligent tools. I specialize in turning ambiguous problems into testable frameworks using creative qualitative and quantitative methods—and shaping both product and model behavior through grounded insights. My work spans multimodal interfaces across voice, AR, and AI infrastructure, with a focus on clarifying user intent, guiding model behavior, and enabling fluid human-AI decision-making in high-stakes environments.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="showCaseStudy('mobile-app')">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Designing Conversational Corrections for AI Dictation on AR Glasses</h3>
+                        <p class="project-description">Shaping Collaborative Repair Loops for Voice Dictation AI.</p>
+                        <div class="project-tags">
+                            <span class="tag">User Interviews</span>
+                            <span class="tag">Usability Testing</span>
+                            <span class="tag">Accessibility</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="showCaseStudy('ecommerce')">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Checkout Flow</h3>
+                        <p class="project-description">Reducing cart abandonment through behavioral research and iterative design improvements.</p>
+                        <div class="project-tags">
+                            <span class="tag">A/B Testing</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="showCaseStudy('healthcare')">
+                    <div class="project-image">🏥</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Healthcare Portal</h3>
+                        <p class="project-description">Designing an intuitive patient portal for better healthcare management and communication.</p>
+                        <div class="project-tags">
+                            <span class="tag">Ethnographic Research</span>
+                            <span class="tag">Service Design</span>
+                            <span class="tag">Healthcare</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="showCaseStudy('edtech')">
+                    <div class="project-image">🎓</div>
+                    <div class="project-content">
+                        <h3 class="project-title">EdTech Learning Platform</h3>
+                        <p class="project-description">Enhancing online learning experiences for diverse student populations through user-centered design.</p>
+                        <div class="project-tags">
+                            <span class="tag">User Personas</span>
+                            <span class="tag">Journey Mapping</span>
+                            <span class="tag">Education</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="about-content">
+                <div class="about-image">👋</div>
+                <div class="about-text">
+                    <h2>Hi, I'm a UX Researcher</h2>
+                    <p>I'm passionate about understanding user behavior and translating insights into meaningful design solutions. With a background in psychology and human-computer interaction, I specialize in mixed-methods research that bridges the gap between user needs and business goals.</p>
+                    <p>My approach combines quantitative data analysis with qualitative insights to create comprehensive user understanding. I believe that great design starts with empathy and is validated through rigorous research.</p>
+                    <div class="skills">
+                        <span class="skill">User Interviews</span>
+                        <span class="skill">Usability Testing</span>
+                        <span class="skill">Survey Design</span>
+                        <span class="skill">Data Analysis</span>
+                        <span class="skill">Prototyping</span>
+                        <span class="skill">A/B Testing</span>
+                        <span class="skill">Journey Mapping</span>
+                        <span class="skill">Accessibility</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study: Mobile App -->
+        <div id="mobile-app" class="page">
+            <div class="case-study">
+                <a href="#" class="back-btn" onclick="showPage('home')">← Back to Projects</a>
+                <h1>Mobile Banking App Redesign</h1>
+                
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">6 months</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Team</div>
+                        <div class="meta-value">UX Researcher, 2 Designers, PM</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Methods</div>
+                        <div class="meta-value">User Interviews, Usability Testing, Accessibility Audit</div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Challenge</h2>
+                    <p>The existing mobile banking app had a 2.3-star rating and 40% of users abandoned tasks mid-flow. Customer support was receiving 500+ calls daily about app navigation issues. The challenge was to redesign the app to improve usability while maintaining security and compliance requirements.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Research Approach</h2>
+                    <p>I conducted a comprehensive research study including:</p>
+                    <p>• <strong>User Interviews:</strong> 24 participants across different age groups and tech comfort levels</p>
+                    <p>• <strong>Usability Testing:</strong> Task-based testing with 32 users on key flows</p>
+                    <p>• <strong>Accessibility Audit:</strong> WCAG 2.1 compliance testing with assistive technology users</p>
+                    <p>• <strong>Competitive Analysis:</strong> Feature comparison with top 5 banking apps</p>
+                    <div class="research-image">User Interview Setup</div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Key Findings</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <h3>Navigation Confusion</h3>
+                            <p>78% of users couldn't find basic features like transfer funds within 3 attempts</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Security Anxiety</h3>
+                            <p>Users wanted clearer security indicators and explanations of safety measures</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Accessibility Barriers</h3>
+                            <p>Screen reader users faced significant challenges with form inputs and navigation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Impact</h2>
+                    <p>The redesigned app launched with significant improvements:</p>
+                    <p>• App store rating increased from 2.3 to 4.1 stars</p>
+                    <p>• Task completion rate improved by 65%</p>
+                    <p>• Customer support calls reduced by 40%</p>
+                    <p>• 95% improvement in accessibility compliance</p>
+                    <div class="research-image">Before/After Comparison</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study: E-commerce -->
+        <div id="ecommerce" class="page">
+            <div class="case-study">
+                <a href="#" class="back-btn" onclick="showPage('home')">← Back to Projects</a>
+                <h1>E-commerce Checkout Flow Optimization</h1>
+                
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">4 months</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Team</div>
+                        <div class="meta-value">UX Researcher, Designer, Developer, Data Analyst</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Methods</div>
+                        <div class="meta-value">A/B Testing, Analytics, User Testing</div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Challenge</h2>
+                    <p>Cart abandonment rate was 73%, significantly higher than industry average of 60%. Revenue loss was estimated at $2.4M annually. The goal was to identify friction points in the checkout process and optimize for conversion.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Research Process</h2>
+                    <p>I employed a data-driven approach combining quantitative and qualitative methods:</p>
+                    <p>• <strong>Analytics Deep Dive:</strong> Heat mapping and funnel analysis</p>
+                    <p>• <strong>User Testing:</strong> Think-aloud sessions during checkout</p>
+                    <p>• <strong>A/B Testing:</strong> Iterative testing of design variations</p>
+                    <p>• <strong>Post-Purchase Surveys:</strong> Understanding successful completion factors</p>
+                    <div class="research-image">Analytics Dashboard</div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Key Insights</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <h3>Form Friction</h3>
+                            <p>Users abandoned when faced with 12+ form fields, especially on mobile</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Trust Signals</h3>
+                            <p>Lack of security badges and unclear return policy caused hesitation</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Guest Checkout</h3>
+                            <p>Forced account creation led to 45% of abandonment instances</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Results</h2>
+                    <p>The optimized checkout flow delivered measurable improvements:</p>
+                    <p>• Cart abandonment reduced from 73% to 58%</p>
+                    <p>• Conversion rate increased by 23%</p>
+                    <p>• Mobile checkout completion improved by 35%</p>
+                    <p>• Annual revenue increase of $1.8M</p>
+                    <div class="research-image">Conversion Metrics</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study: Healthcare -->
+        <div id="healthcare" class="page">
+            <div class="case-study">
+                <a href="#" class="back-btn" onclick="showPage('home')">← Back to Projects</a>
+                <h1>Healthcare Patient Portal</h1>
+                
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">8 months</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Team</div>
+                        <div class="meta-value">UX Researcher, Service Designer, 3 Developers</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Methods</div>
+                        <div class="meta-value">Ethnographic Research, Journey Mapping, Co-design</div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Challenge</h2>
+                    <p>Patients struggled to manage their healthcare digitally, with only 15% portal adoption rate. The existing system was fragmented across multiple platforms, creating confusion and missed appointments. The goal was to create a unified, intuitive patient experience.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Research Methodology</h2>
+                    <p>Given the sensitive nature of healthcare, I used ethnographic approaches:</p>
+                    <p>• <strong>Contextual Inquiries:</strong> Observing patients in clinical settings</p>
+                    <p>• <strong>Journey Mapping:</strong> End-to-end patient experience mapping</p>
+                    <p>• <strong>Co-design Sessions:</strong> Collaborative design with patients and staff</p>
+                    <p>• <strong>Accessibility Testing:</strong> Focus on elderly and disabled users</p>
+                    <div class="research-image">Patient Journey Map</div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Key Discoveries</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <h3>Information Overload</h3>
+                            <p>Patients felt overwhelmed by medical jargon and complex interfaces</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Family Involvement</h3>
+                            <p>Caregivers needed access to manage appointments and medications</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Mobile-First Need</h3>
+                            <p>65% of patients primarily used mobile devices for healthcare tasks</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Outcomes</h2>
+                    <p>The new patient portal transformed the healthcare experience:</p>
+                    <p>• Portal adoption increased to 67%</p>
+                    <p>• Patient satisfaction scores improved by 42%</p>
+                    <p>• Missed appointments reduced by 28%</p>
+                    <p>• Staff workload decreased by 30% due to self-service adoption</p>
+                    <div class="research-image">Portal Usage Analytics</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study: EdTech -->
+        <div id="edtech" class="page">
+            <div class="case-study">
+                <a href="#" class="back-btn" onclick="showPage('home')">← Back to Projects</a>
+                <h1>EdTech Learning Platform</h1>
+                
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Duration</div>
+                        <div class="meta-value">5 months</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Team</div>
+                        <div class="meta-value">UX Researcher, Learning Designer, 2 Developers</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Methods</div>
+                        <div class="meta-value">Personas, Journey Mapping, Learning Analytics</div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Challenge</h2>
+                    <p>The online learning platform had a 35% course completion rate and students reported feeling disconnected from the learning experience. The platform needed to better support diverse learning styles and improve engagement across different age groups and technical skill levels.</p>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Research Strategy</h2>
+                    <p>I focused on understanding the complete learning journey:</p>
+                    <p>• <strong>Student Personas:</strong> Created 6 detailed personas across age groups</p>
+                    <p>• <strong>Learning Analytics:</strong> Analyzed engagement patterns and drop-off points</p>
+                    <p>• <strong>Diary Studies:</strong> Week-long studies of learning habits</p>
+                    <p>• <strong>Educator Interviews:</strong> Understanding instructor perspectives</p>
+                    <div class="research-image">Student Persona Development</div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Research Insights</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <h3>Motivation Decay</h3>
+                            <p>Students lost motivation after week 2 without social connection</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Progress Clarity</h3>
+                            <p>Learners needed clearer indicators of progress and achievement</p>
+                        </div>
+                        <div class="insight-card">
+                            <h3>Flexible Pacing</h3>
+                            <p>One-size-fits-all pacing didn't work for diverse learners</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h2>Impact</h2>
+                    <p>The redesigned platform significantly improved learning outcomes:</p>
+                    <p>• Course completion rate increased to 68%</p>
+                    <p>• Student satisfaction scores improved by 52%</p>
+                    <p>• Average time spent per session increased by 40%</p>
+                    <p>• Instructor satisfaction with platform tools increased by 35%</p>
+                    <div class="research-image">
